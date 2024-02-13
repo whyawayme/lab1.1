@@ -52,12 +52,12 @@ TIM_HandleTypeDef htim4;
  uint64_t timestamp = 0;
  uint64_t count = 0;
  uint16_t ADC_RawRead[300]={0};
-  uint16_t pot1;
-  uint16_t pot2;
-  uint16_t pot3;
-  uint16_t ans1;
-  uint16_t ans2;
-  uint16_t ans3;
+ int pot1;
+ int pot2;
+ int pot3;
+ int ans1;
+ int ans2;
+ int ans3;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -69,7 +69,7 @@ static void MX_TIM2_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM4_Init(void);
 /* USER CODE BEGIN PFP */
-
+void Avg();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -125,6 +125,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  timestamp = __HAL_TIM_GET_COUNTER(&htim2);
+	  Avg();
   }
   /* USER CODE END 3 */
 }
@@ -463,6 +464,21 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
 		count += 4294967296 ;
 	}
+}
+void Avg()
+{
+	pot1 =0;
+	pot2 =0;
+	pot3 =0;
+	for (int i=0; i<300; i +=3)
+	{
+		pot1 += ADC_RawRead[i];
+		pot2 += ADC_RawRead[i+1];
+		pot3 += ADC_RawRead[i+2];
+	}
+	ans1 = pot1/100;
+	ans2 = pot2/100;
+	ans3 = pot3/100;
 }
 /* USER CODE END 4 */
 
