@@ -552,7 +552,6 @@ void servo()
 {
 sum1 = 0;
 sum2 = 0;
-
 	if (ans1 >= 0 && ans1 <= (4096*25)/100 )
 	{
 		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 500);
@@ -560,12 +559,14 @@ sum2 = 0;
 
 	else if (ans1 > 1024 && ans1 <= (4096*50)/100)
 	{
-		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, ans2);
+		sum1 = (ans2 *(2500 - 500))/4096 + 500;
+		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, sum1);
 	}
 
 	else if (ans1 > 2048 && ans1 <= (4096*75)/100)
 	{
-		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, ans3);
+		sum2 = (ans3 *2000)/4096 + 500;
+		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, sum2);
 	}
 	else
 	{

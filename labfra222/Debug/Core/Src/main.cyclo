@@ -9,5 +9,5 @@
 ../Core/Src/main.c:492:13:MX_GPIO_Init	1
 ../Core/Src/main.c:529:6:HAL_TIM_PeriodElapsedCallback	2
 ../Core/Src/main.c:536:6:Avg	2
-../Core/Src/main.c:551:6:servo	7
-../Core/Src/main.c:582:6:Error_Handler	1
+../Core/Src/main.c:551:6:servo	9
+../Core/Src/main.c:583:6:Error_Handler	1
